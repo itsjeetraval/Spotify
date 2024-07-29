@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+        integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/utility.css' %}">
+
+    <title>Spotify</title>
+
+    <style>
+
+        .search-container {
+          margin-top:10px;
+          position: relative;
+          display: flex;
+          align-items: center;
+        }
+    
+        .search-input {
+          padding: 5px;
+          border: none;
+          border-radius: 5px 0 0 5px;
+          width: 80px;
+          font-size: 10px;
+        }
+
+        .search-button {
+          margin-left:6px;
+          background-color: black;
+          color: #fff;
+          border: none;
+          border-radius: 0 5px 5px 0;
+          cursor: pointer;
+          font-size: 14px;
+          /* Adding a subtle transition for a smoother effect */
+          transition: background-color 0.3s ease;
+        }
+    
+        .search-button:hover {
+          background-color: grey;
+        }
+
+        .delete{
+            margin-top:0;
+            padding-top:0;
+            margin-left:180px;
+        }
+    
+        @media only screen and (max-width: 600px) {
+          .search-input {
+            width: 100%;
+          }
+          .search-button {
+            border-radius: 5px;
+            margin-top: 10px;
+            width: 100%;
+          }
+        }
+      </style>
+    
+
+</head>
+
+<body>
+
+    <div class="container flex bg-black">
+        <div class="left">
+            <div class="close">
+                <img width="30" class="invert" src="/static/img/close.svg" alt="">
+            </div>
+            <div class="home bg-grey rounded m-1 p-1">
+               <a href="/"><div class="logo"><img width="110" class="invert" src="/static/img/logo.svg" alt=""></div></a>
+                <ul>
+                    <li><img class="invert" src="/static/img/home.svg"  alt="home"><a href="/" style="color: white;text-decoration: none;">Home</li></a>
+                    <li><img class="invert" src="/static/img/search.svg" alt="home">Search</li>
+                    <li><img class="invert" src="/static/img/add.svg" alt="home"><a href="/add" style="color: white;text-decoration: none;">Add</a></li>
+                </ul>
+            </div>
+
+            <div class="library bg-grey rounded m-1 p-1">
+                <div class="heading">
+                    <img class="invert" src="/static/img/playlist.svg" alt="">
+                    <h2>
+                        Your Library
+                    </h2>
+                </div>
+
+                <div class="songList" hidden>
+                    <ul>
+                        <li>
+                            <img class="music_img" src="" alt="">
+                            <div class="info">
+                                <div><h2 class="song-title">Stole the show</h2></div>
+                                <div><p class="artist">Kygo</p></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="footer">
+                    <div><a href="https://www.spotify.com/jp/legal/"><span>Legal</span></a></div>
+                    <div><a href="https://www.spotify.com/jp/privacy/"><span>Privacy Center</span></a></div>
+                    <div><a href="https://www.spotify.com/jp/legal/privacy-policy/"><span>Privacy Policy</span></a>
+                    </div>
+                    <div><a href="https://www.spotify.com/jp/legal/cookies-policy/"><span>Cookies</span></a></div>
+                    <div><a href="https://www.spotify.com/jp/legal/privacy-policy/#s3"><span>About Ads</span></a></div>
+                    <div><a href="https://www.spotify.com/jp/accessibility/"><span>Accessibility</span></a></div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="right bg-grey rounded">
+
+            <div class="header">
+                <div class="nav">
+                    <div class="hamburgerContainer">
+
+                        <img width="40" class="invert hamburger" src="/static/img/hamburger.svg" alt="">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M15 6L9.70711 11.2929C9.37377 11.6262 9.20711 11.7929 9.20711 12C9.20711 12.2071 9.37377 12.3738 9.70711 12.7071L15 18"
+                                stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M9 18L14.2929 12.7071C14.6262 12.3738 14.7929 12.2071 14.7929 12C14.7929 11.7929 14.6262 11.6262 14.2929 11.2929L9 6"
+                                stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+
+                </div>
+
+
+
+                <!--
+                <form  method="get">
+                <div class="search-container">
+                    <input type="text" class="search-input" name="songname" placeholder="Search Songs" required>
+                    <input type="submit" value="search" class="search-button">
+                </div>
+                </form>-->
+  
+
+
+
+
+                <div class="buttons">
+                    <a href="{% url 'sign' %}"><button class="signupbtn">Sign up</button></a>
+                    <a href="{% url 'login' %}"><button class="loginbtn">Log in</button></a>
+                </div>
+            </div>
+
+       
+            <div class="spotifyPlaylists">
+                    <h1>Spotify Songs</h1>
+                    <div class="cardContainer">
+                        {% for music in musics %}
+                    <div class="card">
+                        <div class="play">
+                            <i id="{{ forloop.counter0 }}" onclick="getsong(this)">
+                                 <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 8 8">
+                                <circle cx="4" cy="4" r="4" fill="black" />
+                                <path d="M4 0C1.79 0 0 1.79 0 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zM3 2l3 2-3 2V2z" fill="#1fdf64"/>
+                                </svg>
+                            </i>
+                        </div> 
+
+                        <img src="/media/{{music.cover_image}}" alt="">
+                        <h3 id="title{{forloop.counter0}}">{{music.title}}</h3>
+                        <p id="artist{{forloop.counter0}}">{{music.artist}}</p>
+                        
+                      <!-- <div class="delete">
+                            <a href="/delete/{{music.id}}" >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                  <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
+                                </svg>
+                            </a>
+                        </div>--> 
+                    </div>
+                    {% empty %}        No Song Found   -->  Add Song
+                    {% endfor %}
+                        
+                    </div>
+            </div>
+
+                <div class="playbar">
+        
+
+                    <div class="abovebar">
+                        
+                        <div class="songinfo"></div>
+
+                        <div class="songbuttons invert">
+                            <i class="fas fa-backward  fa-2xl" id="prev" title="Previous"></i>
+                            <i class="fas fa-play main_button fa-2xl" id="play" title="Play"></i>
+                            <i class="fas fa-forward fa-2xl" id="next" title="Next"></i>
+                        </div>
+
+                        <div class="lecteur">
+                            <audio class="audio-player" src=""></audio>
+                        </div>
+                        </div>
+                       
+                        <div class="timevol">
+                            <div class="songtime">
+                          
+                                <div class="progress_duration_meter flex">
+                                    <div id="current_time"> 0:00 </div>/ 
+                                    <div id="duration"> 0:00 </div>
+                                </div>
+                                <div class="progress_div">
+                                    <div class="progress">
+                               
+                                    </div>
+                                </div>
+
+               
+                        
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+           
+    
+        </div>
+
+    </div>
+
+  
+
+    {{music_list | json_script:'musics'}}
+
+    <script src="{% static 'js/home.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+
+
+</body>
+
+</html>
